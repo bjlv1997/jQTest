@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>17_文档增删改</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+        }
+        .div1{
+            position:absolute;
+            with:200px;
+            height:200px;
+            top:20px;
+            left:10px;
+            backgrounf:blue;
+        }
+        .div2{
+            position:absolute;
+            with:100px;
+            height: 100px;
+        }
+
+    </style>
+</head>
+<body>
+
+<ul id="ul1">
+    <li>AAAAA</li>
+    <li title="hello">BBBBB</li>
+    <li class="box">CCCCC</li>
+    <li title="hello">DDDD</li>
+    <li title="two">EEEEE</li>
+    <li>FFFFF</li>
+</ul>
+<br>
+<br>
+<ul id="ul2">
+    <li>aaa</li>
+    <li title="hello">bbb</li>
+    <li class="box">ccc</li>
+    <li title="hello">dddd</li>
+    <li title="two">eeee</li>
+</ul>
+<script type="text/javascript" src="./js/jquery-1.12.3.js"></script>
+<script type="text/javascript">
+    //1.向id为ul1的ul下添加一个span(最后)
+    //   方法一
+    //$("#ul1").append('<span>append()添加的span</span>');
+    //  方法二
+    $('<span>appendTo()添加的span</span>').appendTo("#ul1");
+
+    //2.向id为ul1的ul下添加一个span（最后）
+    //  方法一
+    $('#ul1').prepend('<span>perpend()添加的span</span>');
+    //  方法二
+    // $('<span>prepend()添加的span</span>').prependTo("#ul1");
+
+    //3.在id为ul1的ul下的li（title为hello）的前面添加span
+    // var $ul1 = $("#ul1");
+    // $ul1.children('li[title=hello]').before('<span>before()添加的span</span>');
+
+    //4.在id为ul1的ul下的li（title为hello）的后面添加span
+    // $("#ul1").children('li[title=hello]').after('<span>after()添加的span</span>');
+
+    //5.在id为ul2的ul下的li（title为hello）全部替换为p
+    // $("#ul2>li[title=hello]").replaceWith('<p>replaceWith()替换的p</p>');
+
+    //6.移除id为ul2的ul下的所有li
+   // $("#ul2").empty(); //删除ul下所有的
+   //  $("#ul2>*").remove();
+</script>
+</body>
+</html>

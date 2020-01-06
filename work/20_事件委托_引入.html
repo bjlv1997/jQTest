@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20_事件委托_引入</title>
+
+</head>
+<body>
+<ul>
+    <li>11111</li>
+    <li>111111</li>
+    <li>1111111</li>
+    <li>11111111</li>
+
+</ul>
+<li>2222</li>
+<br>
+<button id="btn1">添加新的li</button>
+<button id="btn2">删除ul上的事件委托监听器</button>
+<br>
+
+<script type="text/javascript" src="./js/jquery-1.12.3.js"></script>
+<script type="text/javascript" >
+    // $('ul>li').click(function(){
+    //     this.style.background='red';
+    // });
+
+    //第一种方法
+    // $('#btn').click(function(){
+    //     $('ul').append('<li>新增li...</li>').find('li').click(function(){
+    //         this.style.background='red';
+    //     });
+    // });
+
+    //第二种方法，动态查找,新增元素，自动有事件相应处理，减少事件监听的数量
+    //使用 delegate() 方法的事件处理程序适用于当前或未来的元素（比如由脚本创建的新元素）。
+    //设置事件委派
+    $('ul').delegate('li','click',function(){
+       this.style.background = 'red';
+    });
+    $('#btn1').click(function(){
+        $('ul').append('<li>新增li....</li>');
+    });
+
+    //移除事件委派
+    $('#btn2').click(function(){
+        $('ul').undelegate('click');
+    });
+</script>
+</body>
+</html>

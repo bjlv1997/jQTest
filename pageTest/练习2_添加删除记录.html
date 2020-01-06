@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加删除记录</title>
+    <style>
+        #data {
+            width: 600px;
+        }
+
+        #data, td, th {
+            border-collapse: collapse;
+            border: 1px solid #aaaaaa;
+        }
+
+        th, td {
+            height: 28px;
+        }
+
+        #data thead {
+            background-color: #333399;
+            color: #ffffff;
+        }
+        table{
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<table id="data">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Tom</td>
+        <td>tom@163.com</td>
+        <td>500</td>
+        <td><a href="deleteEmp?id=001">Delete</a></td>
+    </tr>
+
+    <tr>
+        <td>Bob</td>
+        <td>bob@163.com</td>
+        <td>10000</td>
+        <td><a href="deleteEmp?id=002">Delete</a></td>
+    </tr>
+    <tr>
+        <td>Tom</td>
+        <td>tom@163.com</td>
+        <td>500</td>
+        <td><a href="deleteEmp?id=003">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div id="formDiv" >
+    <h4 style="text-align:center">添加新员工</h4>
+    <table>
+        <tr>
+            <td class=""word>name:</td>
+            <td class="inp">
+                <input type="text" name="empName" id="empName">
+            </td>
+        </tr>
+        <tr>
+            <td class=""word>email:</td>
+            <td class="inp">
+                <input type="text" name="email" id="email">
+            </td>
+        </tr>
+        <tr>
+            <td class=""word>salary:</td>
+            <td class="inp">
+                <input type="text" name="salary" id="salary">
+            </td>
+        </tr>
+        <tr>
+            <td class=""word>center:</td>
+            <td class="inp">
+                <button  name="addEmpButton" id="abc">
+                    submit
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<script type="text/javascript" src="./common/jquery-1.12.3.js"></script>
+<script type="text/javascript">
+
+    $('#abc').click(function(){
+        var empName = $('#empName').val();
+        var email = $('#email').val();
+        var salary = $('#salary').val();
+
+        $('<tr></tr>').append("<td>"+empName+"</td>")
+            .append('<td>'+email+'</td>')
+            .append('<td>'+salary+'</td>')
+            .append('<td><a href="deleteEmp?id="'+Date.now()+'>Delete</a></td>')
+            .appendTo('#data>tbody').find('a').click(del);
+
+         $('#empName').val('');
+         $('#email').val('');
+         $('#salary').val('');
+    });
+
+    $('#data a').click(del);
+
+    function del() {
+        console.log("12344");
+        var $tr = $(this).parent().parent();
+        var name = $tr.children(':first').html();
+        if(confirm('确定删除'+name+'吗？')){
+            $tr.remove();
+        }
+        return false;
+    }
+</script>
+</body>
+</html>

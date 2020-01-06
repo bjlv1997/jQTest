@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03_回到顶部</title>
+    <style>
+        #to_top{
+            width:80px;
+            height:40px;
+            font:14px/20px arial;/*规定字体大小和行高，宋体*/
+            text-align:center;/*指定元素文体水平排列顺序*/
+            background:#06c;
+            position:fixed;/*元素的位置相对于浏览器的窗口是固定的*/
+            cursor:pointer;/*属性定义了鼠标指针放在一个元素边界范围内时所用的光标形状*/
+            color:#fff;
+            left:1250px;
+            top:500px;
+        }
+    </style>
+</head>
+<body style="overflow:scroll;height: 2000px">
+
+<!--<div id="to_top"></div>-->
+<button id="to_top" style="">返回顶部</button>
+<script type="text/javascript" src="./common/jquery-1.12.3.js"></script>
+<script type="text/javascript">
+$('#to_top').click(function(){
+    //瞬间返回顶部
+   // $('body,html').scrollTop(0);
+
+    //平滑滚动到顶部
+      //总距离
+    var distance = $('html,body').scrollTop();
+      //时间
+    var time = 500;
+      //间隔时间
+    var intervalTime = 50;
+      //单次移动的距离
+    var itemDistance = distance/(time/intervalTime);
+      //使用循环定时器不断滚动
+    var intervalId = setInterval(function(){
+        distance -=itemDistance;
+        //到达顶部，停止定时器
+        if(distance<=0){
+            distance = 0;
+            clearInterval(intervalId);
+        }
+        $('body,html').scrollTop(distance);
+    },intervalTime);
+});
+</script>
+</body>
+</html>

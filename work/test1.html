@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01_出识jQuery</title>
+    <script type="text/javascript">
+        <!--原生js-->
+        window.onload = function () {
+            var btn1 = document.getElementById("btnOne");
+            btn1.onclick = function () {
+                var userName = document.getElementById("userName").value;
+                alert(userName);
+            }
+        }
+    </script>
+    <!--jQuery-->
+<!--    <script type="text/javascript" src="./common/jQuery.common"></script>-->
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+    <script type="text/javascript">
+        //绑定文档加载完成的监听
+        $(function () {
+            $("#btnTwo").click(function () {//给btnTwo绑定监听
+                var userName = $("#userName").val();
+                alert(userName);
+            })
+
+        })
+    </script>
+</head>
+<body>
+<!--
+需求是：点击“确定”按钮提示输入的值
+-->
+用户名：<input type="test" id="userName">
+<button id="btnOne">确定原声版</button>
+<button id="btnTwo">确定（jQuery版）</button>
+</body>
+</html>

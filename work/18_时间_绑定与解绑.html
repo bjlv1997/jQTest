@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>18_事件绑定与解绑</title>
+    <style type="text/css">
+        .out {
+            height: 300px;
+            width: 300px;
+            background-color: red;
+        }
+
+        .inner {
+            height: 150px;
+            width: 150px;
+            margin-top: 50px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body style="height:5000px">
+<div class="out">
+    外部DIV
+    <div class="inner">内部div</div>
+</div>
+
+<div class="divBtn">
+    <button id="btn1">取消绑定所有事件</button>
+    <button id="btn2">取消绑定mouseover事件</button>
+    <button id="btn3" >测试事件坐标</button>
+    <a href="http://www.baidu.com" id="test4">百度一下</a>
+
+</div>
+<script type="text/javascript" src="./js/jquery-1.12.3.js"></script>
+<script type="text/javascript">
+    //1.给.out绑定点击监听事件（用两种方法绑定）
+    // $('.out').click(function () {
+    //     console.log("click out");
+    // });
+
+    $('.out').on('click', function () {
+        console.log("on click out");
+    });
+
+    //2.给.inner绑定鼠标移入和移出的事件监听（用3种方法绑定）
+    // $('.inner').mouseenter(function () {
+    //     console.log("鼠标移入");
+    // }).mouseleave(function () {
+    //     console.log("鼠标移出");
+    // });
+    //
+    // $('.inner').on('mouseenter', function () {
+    //     console.log('绑定事件，鼠标移入');
+    // }).on('mouseleave', function () {
+    //     console.log('绑定事件，鼠标移出');
+    // });
+    //over:鼠标移到元素上要触发的函数
+    //out:鼠标移出元素要触发的函数
+    $('.inner').hover(function () {
+        console.info('over，鼠标移入');
+    }, function () {
+        console.info('out,鼠标移出');
+    });
+
+    //3.点击btn1解除.inner上的所有事件监听
+    $('#btn1').click(function () {
+        $('.inner').off();
+    });
+    //4.点击btn2解除.inner上的mouseover事件
+    $('#btn2').click(function () {
+        $('.inner').off('mouseenter');
+    });
+    //5.点击btn3得到事件坐标
+    $('#btn3').click(function (even) {
+        console.log(even.offsetX,even.offsetY);//原点为点击事件元素的左上角标
+        console.log(even.clientX,even.clientY);//原点为窗口的左上角(随页面的变化而变化)客户区指的是当前窗口。
+        console.log(even.pageX,even.pageY);//原点为页面的左上角
+    });
+
+    //6.点击inner区域，外部点击监听不响应
+    $('.inner').click(function(event){
+        // 方法阻止事件冒泡到父元素，阻止任何父事件处理程序被执行。
+        event.stopPropagation();
+    });
+
+    //7.点击链接，如果当前时间是偶数不调跳转
+    //event.preventDefault() 方法阻止元素发生默认的行为。
+$('#test4').click(function(event){
+    if(Date.now()%2===0){
+        event.preventDefault();
+    }
+});
+</script>
+</body>
+</html>
